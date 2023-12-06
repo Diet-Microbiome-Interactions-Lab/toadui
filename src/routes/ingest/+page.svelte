@@ -1,8 +1,27 @@
 <script>
+	import Ingest from './ingest-form.svelte'
+	import Tags from "svelte-tags-input";
 	/** @type {import('./$types').PageData} */
 	export let data;
-</script>
+	let dtags = [];
+	let etags = [];
 
+	const disciplines = [
+		"biology",
+		"nutrition",
+		"bioengineering"
+	]
+
+	const environments = [
+		"gut",
+		"plant",
+		"soil",
+		"rhizobiome",
+		"oral",
+		"vaginal"
+	]
+
+</script>
 <div>
 	<div class="font-bold text-2xl mb-4">Ingest data into the database</div>
 	<div class="opacity-80 mb-4">
@@ -26,10 +45,31 @@
 			{data.generatedAt}
 		</div>
 	</div>
-	<div class="bg-zinc-900/60 rounded-md p-6 shadow-md  shadow-zinc-700/30">
-		<div class="mb-2 text-sm uppercase text-white/60">DB_Info:</div>
-		<div class="text-2xl">
-			db: test; collection: test; uri: test;
+</div>
+
+<Ingest />
+
+<div class="bg-zinc-900/60 rounded-md p-6 shadow-md  shadow-zinc-700/30 grid-container">
+	<div class="text-2xl item1">
+		<div class="mb-2 text-sm uppercase text-white/60">Tag Disciplines</div>
+		<div class="mb-2 text-sm uppercase text-black/60">
+		<Tags
+			bind:tags={dtags}
+			addKeys={[9]}
+			autoComplete={disciplines}
+			readonly={false}
+		/>
+		</div>
+	</div>
+	<div class="text-2xl item2">
+		<div class="mb-2 text-sm uppercase text-white/60">Tag Environments</div>
+		<div class="mb-2 text-sm uppercase text-black/60">
+		<Tags
+			bind:tags={etags}
+			addKeys={[9]}
+			autoComplete={environments}
+			readonly={false}
+		/>
 		</div>
 	</div>
 </div>
@@ -45,5 +85,32 @@
 		display: inline-block;
 		width: 1em;
 		margin-left: -1em;
+	}
+	.grid-container {
+		display: grid;
+		column-gap: 10px;
+		row-gap: 50px;
+	}
+	.item1 {
+		grid-column-start: 1;
+		grid-column-end: 2;
+	}
+	.item2 {
+		grid-column-start: 2;
+		grid-column-end: 2;
+		grid-row-start: 1;
+		grid-row-end: 1;
+	}
+	.item3 {
+		grid-column-start: 1;
+		grid-column-end: 1;
+		grid-row-start: 2;
+		grid-row-end: 2;
+	}
+	.item4 {
+		grid-column-start: 2;
+		grid-column-end: 2;
+		grid-row-start: 2;
+		grid-row-end: 2;
 	}
 </style>
