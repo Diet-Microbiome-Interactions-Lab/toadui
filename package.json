@@ -20,5 +20,9 @@
 		"typescript": "^5.0.0",
 		"vite": "^4.2.0"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"flowbite-svelte": "^0.44.20",
+		"svelte-tags-input": "^5.0.0"
+	}
 }
