@@ -1,10 +1,8 @@
-<script>
-	/** @type {import('./$types').PageData} */
-	export let data;
+<script lang="ts">
 </script>
 
-<div>
-	<div class="font-bold text-2xl mb-4">Vomit data from the database</div>
+
+<div class="font-bold text-2xl mb-4">Vomit data from the database</div>
 	<div class="opacity-80 mb-4">
 		This is the vomit tab, where you can emit table from the database into the format of your choice.
 		Toads are quite similar to humans in that they vomit when they eat something distressing to the
@@ -20,26 +18,34 @@
 	<div class="opacity-80 mb-4">
 		Below are the possible file formats to export your data in:
 	</div>
-	<div class="font-bold text-2xl mb-4">Ingest data into the database</div>
-	<div class="opacity-80 mb-4">
-		This is the route where you add your data to the database. In order to add your data to the database, we need
-		to establish a few ground rules. For every ingestion, the following pieces of information are required:
-		<div class="bg-zinc-900/60 rounded-md p-6 shadow-md  shadow-zinc-700/30">
-			<ul> Non-compressed
-				<li>CSV-delimited</li>
-				<li>JSON</li>
-				<li>YAML</li>
-				<li>TAB-delimited</li>
-				<li>XLSX</li>
-			</ul>
-			<br>
+	<div class="font-bold text-2xl mb-4 center text-green-600">Export Formats</div>
+	<div class="opacity-80 mb-4 grid-cols-2 grid">
+		<div>
+		<ul> Non-Compressed
+			<li>CSV-delimited</li>
+			<li>JSON</li>
+			<li>YAML</li>
+			<li>TAB-delimited</li>
+			<li>XLSX</li>
+		</ul>
+		</div>
+		<div>
 			<ul> Compressed
 				<li>BSON</li>
 				<li>*.gz</li>
 				<li>*.zip</li>
 			</ul>
 		</div>
-	</div>
+</div>
+
+<div>
+	<form method="GET">
+		<label>
+			Search the database:
+			<input class="text-black" type="text" name="lab" />
+		</label>
+		<button type="submit">Search</button>
+	</form>
 </div>
 
 <style>

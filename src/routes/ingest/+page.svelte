@@ -1,6 +1,8 @@
-<script>
+<script lang="ts">
 	import Ingest from './ingest-form.svelte'
 	import Tags from "svelte-tags-input";
+	import { Label, Textarea } from 'flowbite-svelte';
+	// import { get } from './http';
 	/** @type {import('./$types').PageData} */
 	export let data;
 	let dtags = [];
@@ -20,10 +22,37 @@
 		"oral",
 		"vaginal"
 	]
+	export async function get(): Promise<any> {
+		const uri = "http://127.0.0.1:5000/functions/test";
+		console.log(`Get calling: ${uri}`);
+		const req = await fetch(uri, {
+			method: "GET",
+		});
+
+		if (req.ok) {
+			const response = await req.json();
+			console.log(`Get loaded data ${JSON.stringify(response)}`);
+			formdata = response;
+			return response;
+		} else {
+			console.log(`Get failed to fetch ${uri}`);
+			throw new Error("Sorry homie");
+		}
+	}
+
+	let formdata = {};
+	$: console.log(`Formdata has changed to ${JSON.stringify(formdata)}`);
+	let lab = "";
 
 </script>
+
+<div class="text-3xl text-purple-500 outline-double mb-4">
+	<center>Ingest Data</center>
+</div>
+
+
 <div>
-	<div class="font-bold text-2xl mb-4">Ingest data into the database</div>
+	<div class="font-bold text-2xl mb-4">Ingest data into the database {formdata.lab} member</div>
 	<div class="opacity-80 mb-4">
 		This is the route where you add your data to the database. In order to add your data to the database, we need
 		to establish a few ground rules. For every ingestion, the following pieces of information are required:
@@ -47,8 +76,9 @@
 	</div>
 </div>
 
-<Ingest />
+<Ingest bind:formdata/>
 
+<!-- Tags -->
 <div class="bg-zinc-900/60 rounded-md p-6 shadow-md  shadow-zinc-700/30 grid-container">
 	<div class="text-2xl item1">
 		<div class="mb-2 text-sm uppercase text-white/60">Tag Disciplines</div>
@@ -74,7 +104,30 @@
 	</div>
 </div>
 
-<style>
+<div class="form">
+    <form on:submit|preventDefault={get}>
+        <fieldset class="fieldset">
+            <legend>Python Call Ex</legend>
+            <label class="block">
+                <span class="block">Lab</span>
+                <input class="block input text-black/60" type="text" id="lab" name="lab" value="CHANGEME"/>
+            </label>
+            <button on:click={() => console.log('Clicked! ' )} type="submit" class="bg-purple-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Query
+            </button>
+        </fieldset>
+    </form>
+</div>
+
+<!-- Form data printed -->
+<div class="form">
+	<Label for="textarea-id" class="mb-2">Output</Label>
+	<div class="bg-zinc-900/60 rounded-md p-6 shadow-md  shadow-zinc-700/30">
+		{JSON.stringify(formdata, null, 4)}
+	</div>
+</div>
+
+<style lang="postcss">
 	ul {
 		list-style: none;
 	}
