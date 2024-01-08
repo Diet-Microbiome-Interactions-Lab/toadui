@@ -1,5 +1,5 @@
 <script>
-	import logo from './Neuromancer.jpeg';
+	import logo from './pics/Neuromancer.jpeg';
 </script>
 
 <div
