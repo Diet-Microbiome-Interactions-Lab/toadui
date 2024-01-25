@@ -22,23 +22,7 @@
 		"oral",
 		"vaginal"
 	]
-	export async function get(): Promise<any> {
-		const uri = "http://127.0.0.1:5000/functions/test";
-		console.log(`Get calling: ${uri}`);
-		const req = await fetch(uri, {
-			method: "GET",
-		});
-
-		if (req.ok) {
-			const response = await req.json();
-			console.log(`Get loaded data ${JSON.stringify(response)}`);
-			formdata = response;
-			return response;
-		} else {
-			console.log(`Get failed to fetch ${uri}`);
-			throw new Error("Sorry homie");
-		}
-	}
+	
 
 	let formdata = {};
 	$: console.log(`Formdata has changed to ${JSON.stringify(formdata)}`);
@@ -102,21 +86,6 @@
 		/>
 		</div>
 	</div>
-</div>
-
-<div class="form">
-    <form on:submit|preventDefault={get}>
-        <fieldset class="fieldset">
-            <legend>Python Call Ex</legend>
-            <label class="block">
-                <span class="block">Lab</span>
-                <input class="block input text-black/60" type="text" id="lab" name="lab" value="CHANGEME"/>
-            </label>
-            <button on:click={() => console.log('Clicked! ' )} type="submit" class="bg-purple-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Query
-            </button>
-        </fieldset>
-    </form>
 </div>
 
 <!-- Form data printed -->

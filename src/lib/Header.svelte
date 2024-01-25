@@ -1,6 +1,7 @@
 <script>
 	import logo from './pics/toad.svg';
 	import mushroom from './pics/mushroom.png';
+	import neuromancer from './pics/Neuromancer.jpeg';
 	export let loggedIn = false;
 </script>
 
@@ -21,10 +22,18 @@
 	</a>
 
 	{#if loggedIn}
+	<a
+	class="bg-white/20 hover:bg-white/40 shadow text-white font-medium rounded p-2 text-sm flex items-center"
+	href="/profile">
+		<span class="button_prefix__e8xDo">
+			<img alt="Toad Logo" src={neuromancer} class="w-10 h-10 mr-2" />
+		</span>
+		<span class="ml-2">Profile</span>
+	</a>
+
 		<a
 		class="bg-white/20 hover:bg-white/40 shadow text-white font-medium rounded p-2 text-sm flex items-center"
-		href="/logout"
-	>
+		href="/logout">
 		<span class="button_prefix__e8xDo">
 			<img alt="Toad Logo" src={mushroom} class="w-10 h-10 mr-2" />
 		</span>

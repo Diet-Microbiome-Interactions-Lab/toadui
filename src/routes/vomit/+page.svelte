@@ -1,6 +1,6 @@
 <script lang="ts">
+	import QueryForm from "./QueryForm.svelte";
 </script>
-
 
 <div class="font-bold text-2xl mb-4">Vomit data from the database</div>
 	<div class="opacity-80 mb-4">
@@ -38,15 +38,7 @@
 		</div>
 </div>
 
-<div>
-	<form method="GET">
-		<label>
-			Search the database:
-			<input class="text-black" type="text" name="lab" />
-		</label>
-		<button type="submit">Search</button>
-	</form>
-</div>
+<QueryForm />
 
 <style>
 	ul {

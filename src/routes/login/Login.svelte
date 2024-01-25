@@ -44,7 +44,7 @@
 			<small id="authentication-error" class="error-text">Check email and password are correct.</small>
 		{/if}
 		<button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-			>Enter The CyberVerse</button
+			>Enter The Pond; RIBBIT!</button
 		>
 		<p class="text-sm font-light text-gray-500 dark:text-gray-400">
 			Don’t have an account yet? <a
