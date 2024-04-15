@@ -1,12 +1,10 @@
 import { redirect } from "@sveltejs/kit";
 import type { Actions, PageServerLoad } from "../$types";
+import { deleteUserSession, redirectToLogin } from "$lib/utilities/session";
 
 export const actions: Actions = {
-  logout: ({ cookies, local }) => {
-    const session = cookies.get("session");
-    if (session) {
-      cookies.delete("session", { path: "/" });
-    }
-    throw redirect(303, "/");
+  logout: ({ cookies }) => {
+    deleteUserSession(cookies)
+    redirectToLogin()
   },
 };

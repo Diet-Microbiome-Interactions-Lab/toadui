@@ -1,5 +1,8 @@
 <script>
-    import Config from '$lib/components/config.svelte';
+    import Config from "$lib/components/config.svelte";
+    export let data;
+    let user = data.user;
+    $: user;
 </script>
 
-<Config />
+<Config bind:user />
